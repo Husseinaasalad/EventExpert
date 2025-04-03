@@ -1,6 +1,5 @@
 <?php
 include 'db_connect.php';
-include 'session.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $conn->real_escape_string($_POST['name']);
@@ -27,22 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <h1 class="logo"><a href="index.php">EventXpert</a></h1>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="events.php">Events</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <?php if (isLoggedIn()): ?>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="signup.php">Sign Up</a></li>
-                    <li><a href="login.php">Login</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
     <main class="container">
         <section class="contact-form">
             <h2>Contact Us</h2>
@@ -69,12 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
                 <button type="submit">Send Message</button>
-                <p>Want to create an account? <a href="signup.php">Sign Up</a></p>
+                <?php if (!isLoggedIn()): ?>
+                    <p>Want to create an account? <a href="signup.php">Sign Up</a></p>
+                <?php endif; ?>
             </form>
         </section>
     </main>
-    <footer class="footer">
-        <p>© <?php echo date("Y"); ?> EventXpert. All rights reserved.</p>
-    </footer>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

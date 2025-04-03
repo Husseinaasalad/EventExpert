@@ -1,14 +1,18 @@
 <?php
 session_start();
 
-function isLoggedIn() {
-    return isset($_SESSION['user_id']);
+if (!function_exists('isLoggedIn')) {
+    function isLoggedIn() {
+        return isset($_SESSION['user_id']);
+    }
 }
 
-function requireLogin() {
-    if (!isLoggedIn()) {
-        header("Location: login.php");
-        exit();
+if (!function_exists('requireLogin')) {
+    function requireLogin() {
+        if (!isLoggedIn()) {
+            header("Location: login.php");
+            exit();
+        }
     }
 }
 ?>

@@ -1,6 +1,5 @@
 <?php
 include 'db_connect.php';
-include 'session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,22 +11,7 @@ include 'session.php';
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <h1 class="logo"><a href="index.php">EventXpert</a></h1>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="events.php">Events</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <?php if (isLoggedIn()): ?>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php else: ?>
-                    <li><a href="signup.php">Sign Up</a></li>
-                    <li><a href="login.php">Login</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'header.php'; ?>
     <main class="container">
         <section class="hero">
             <div class="hero-text">
@@ -59,8 +43,6 @@ include 'session.php';
         <img class="modal-content" id="modalImage">
         <div class="caption" id="modalCaption"></div>
     </div>
-    <footer class="footer">
-        <p>© <?php echo date("Y"); ?> EventXpert. All rights reserved.</p>
-    </footer>
+    <?php include 'footer.php'; ?>
 </body>
 </html>
